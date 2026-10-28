@@ -1,0 +1,895 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Indian Overseas Bank NRI products — NRE, NRO, FCNR(B) and RFC accounts, the NRI Plus fixed deposit scheme, NRI savings tiers and remittance tracking.">
+<meta name="color-scheme" content="light dark">
+<meta property="og:title" content="IOB NRI Banking Desk">
+<meta property="og:description" content="Which NRI account you need, what each one does, NRI Plus deposit rates, savings tiers and how to trace a remittance.">
+<meta property="og:type" content="website">
+<title>IOB NRI Banking Desk</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap">
+
+<style>
+/* Layout: organised by where the money sits — earned abroad, arising in India, or
+   coming home for good. The account chooser is the centre of the page; everything
+   else answers the questions it raises. */
+:root{
+  --paper:#F1EFEA;
+  --surface:#FFFFFF;
+  --surface-2:#F8F7F4;
+  --ink:#13182E;
+  --muted:#5C6378;
+  --line:#DCD8CF;
+  --brand:#254AA0;
+  --brand-soft:#E3E9F7;
+  --gold:#A8741A;
+  --gold-soft:#F6EBD7;
+  --teal:#136F66;
+  --teal-soft:#DDEDEA;
+  --hero-a:#0D1733;
+  --hero-b:#1D3875;
+  --on-hero:#F2F3F7;
+  --on-hero-dim:#A3AECB;
+  --shadow:0 1px 2px rgba(19,24,46,.05),0 14px 36px -22px rgba(19,24,46,.45);
+
+  --f-display:"Archivo",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-text:"Source Serif 4",Georgia,"Times New Roman",serif;
+  --f-data:"JetBrains Mono",ui-monospace,"SFMono-Regular",Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#0C0F1C;
+    --surface:#141829;
+    --surface-2:#1A1F33;
+    --ink:#ECEBE6;
+    --muted:#9AA2B8;
+    --line:#272C41;
+    --brand:#8AABEE;
+    --brand-soft:#18233D;
+    --gold:#DCA955;
+    --gold-soft:#2A2113;
+    --teal:#5CBFB2;
+    --teal-soft:#122A28;
+    --hero-a:#070B18;
+    --hero-b:#152A52;
+    --on-hero:#ECF0F8;
+    --on-hero-dim:#93A0C0;
+    --shadow:0 1px 2px rgba(0,0,0,.45),0 16px 40px -24px rgba(0,0,0,.9);
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0C0F1C;
+  --surface:#141829;
+  --surface-2:#1A1F33;
+  --ink:#ECEBE6;
+  --muted:#9AA2B8;
+  --line:#272C41;
+  --brand:#8AABEE;
+  --brand-soft:#18233D;
+  --gold:#DCA955;
+  --gold-soft:#2A2113;
+  --teal:#5CBFB2;
+  --teal-soft:#122A28;
+  --hero-a:#070B18;
+  --hero-b:#152A52;
+  --on-hero:#ECF0F8;
+  --on-hero-dim:#93A0C0;
+  --shadow:0 1px 2px rgba(0,0,0,.45),0 16px 40px -24px rgba(0,0,0,.9);
+  color-scheme:dark;
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:var(--f-display);font-size:16px;line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{
+  max-width:1060px;margin:0 auto;
+  padding-left:max(16px,env(safe-area-inset-left,0px));
+  padding-right:max(16px,env(safe-area-inset-right,0px));
+}
+section>.wrap{padding-block:72px}
+.band{border-top:1px solid var(--line)}
+
+h1,h2,h3,h4{margin:0;text-wrap:balance;font-weight:600;letter-spacing:-.02em}
+h1{font-size:clamp(34px,5.4vw,56px);line-height:1.04;letter-spacing:-.03em}
+h2{font-size:clamp(23px,3.2vw,32px);line-height:1.14;margin-bottom:10px}
+h3{font-size:17px;letter-spacing:-.01em}
+p{margin:0 0 14px;max-width:66ch}
+.lede{font-family:var(--f-text);font-size:clamp(17px,2vw,20px);line-height:1.56}
+.sub{color:var(--muted);font-size:15px}
+.eyebrow{
+  font-family:var(--f-data);font-size:11px;letter-spacing:.17em;text-transform:uppercase;
+  color:var(--brand);margin:0 0 14px;
+}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--brand);outline-offset:3px;border-radius:3px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+
+/* ---------- HERO ---------- */
+.hero{background:linear-gradient(160deg,var(--hero-a) 0%,var(--hero-b) 68%,var(--hero-a) 100%);color:var(--on-hero);position:relative;overflow:hidden}
+.hero::after{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(70% 55% at 82% 8%,rgba(168,116,26,.22),transparent 68%)}
+.hero>.wrap{position:relative;z-index:1;padding-block:36px 0}
+.masthead{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-bottom:40px}
+.logo{display:flex;align-items:center;gap:12px}
+.logo-badge{
+  width:38px;height:38px;flex:none;border-radius:7px;background:rgba(255,255,255,.1);
+  border:1px solid rgba(255,255,255,.2);display:grid;place-items:center;
+}
+.logo-name{font-size:13.5px;font-weight:600;color:var(--on-hero)}
+.logo-name span{display:block;font-weight:400;color:var(--on-hero-dim);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;margin-top:2px}
+.deskpill{font-family:var(--f-data);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--on-hero-dim);border:1px solid rgba(255,255,255,.22);border-radius:999px;padding:7px 14px}
+.herogrid{display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:center;padding-bottom:52px}
+.hero .eyebrow{color:var(--gold)}
+.hero h1 em{font-family:var(--f-text);font-style:italic;font-weight:400;color:var(--gold)}
+.hero .lede{color:#CDD7EC;margin-top:20px}
+.herocta{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 20px;border-radius:5px;text-decoration:none;font-size:14px;font-weight:600;border:0;cursor:pointer;font-family:var(--f-display);transition:transform .15s ease}
+.btn:hover{transform:translateY(-1px)}
+.btn-gold{background:var(--gold);color:#120D04}
+.btn-line{border:1px solid rgba(255,255,255,.26);color:var(--on-hero);background:transparent}
+.btn-line:hover{background:rgba(255,255,255,.08)}
+.heroart{width:100%;height:auto;display:block}
+
+.railwrap{border-top:1px solid rgba(255,255,255,.14)}
+.rail{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,.14)}
+.rail div{background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.015));padding:20px 4px}
+.rail b{display:block;font-family:var(--f-data);font-size:15px;font-weight:600;color:#fff;letter-spacing:.02em}
+.rail span{display:block;font-size:12px;color:var(--on-hero-dim);margin-top:5px;line-height:1.4}
+
+/* ---------- CHOOSER ---------- */
+.chooser{background:var(--surface);border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow);padding:28px;margin-top:30px}
+.q-step{display:none}
+.q-step.on{display:block}
+.q-count{font-family:var(--f-data);font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:8px}
+.q-text{font-size:clamp(19px,2.6vw,24px);font-weight:600;letter-spacing:-.02em;margin-bottom:18px;text-wrap:balance}
+.opts{display:grid;gap:10px}
+.opt{
+  text-align:left;background:var(--surface-2);border:1px solid var(--line);border-radius:8px;
+  padding:16px 18px;cursor:pointer;font-family:var(--f-display);font-size:15px;color:var(--ink);
+  display:flex;gap:14px;align-items:flex-start;transition:border-color .15s ease,background .15s ease;
+}
+.opt:hover{border-color:var(--brand);background:var(--brand-soft)}
+.opt b{font-weight:600;display:block;margin-bottom:2px}
+.opt small{display:block;color:var(--muted);font-size:13px;line-height:1.45}
+.opt .arrow{margin-left:auto;color:var(--brand);flex:none;padding-top:3px}
+.q-back{background:none;border:0;color:var(--muted);font-family:var(--f-data);font-size:11px;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;padding:10px 0 0;text-decoration:underline}
+.answer{display:none}
+.answer.on{display:block}
+.answer .tag{font-family:var(--f-data);font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--teal);display:block;margin-bottom:8px}
+.answer h3{font-size:clamp(22px,3vw,28px);margin-bottom:8px}
+.answer p{font-family:var(--f-text);font-size:17px;color:var(--muted);max-width:60ch}
+.answer .why{border-left:3px solid var(--gold);padding-left:16px;margin:16px 0 18px;font-size:14.5px;color:var(--muted)}
+
+/* ---------- ACCOUNT CARDS ---------- */
+.accounts{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:32px}
+.acct{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:26px;box-shadow:var(--shadow);display:flex;flex-direction:column;min-width:0}
+.acct-head{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:6px}
+.acct-code{font-family:var(--f-data);font-size:20px;font-weight:600;letter-spacing:-.01em}
+.acct-full{font-size:13px;color:var(--muted)}
+.acct p{font-family:var(--f-text);font-size:15.5px;color:var(--muted);margin:6px 0 0}
+.facts{list-style:none;margin:18px 0 0;padding:0;display:grid;gap:9px}
+.facts li{display:flex;gap:10px;font-size:14px;align-items:baseline}
+.facts .k{font-family:var(--f-data);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);flex:none;width:104px}
+.facts .v{min-width:0}
+.pill{display:inline-block;font-family:var(--f-data);font-size:10.5px;letter-spacing:.07em;text-transform:uppercase;border-radius:4px;padding:4px 8px;font-weight:500}
+.p-good{background:var(--teal-soft);color:var(--teal)}
+.p-warn{background:var(--gold-soft);color:var(--gold)}
+.p-info{background:var(--brand-soft);color:var(--brand)}
+.ccy{display:flex;flex-wrap:wrap;gap:5px;margin-top:auto;padding-top:20px}
+.ccy span{font-family:var(--f-data);font-size:11px;letter-spacing:.04em;background:var(--surface-2);border:1px solid var(--line);border-radius:4px;padding:4px 7px;color:var(--muted)}
+
+/* ---------- NRI PLUS ---------- */
+.plus{background:var(--gold-soft);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.plus .eyebrow{color:var(--gold)}
+.plus-head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap}
+.plus-mark{font-size:clamp(28px,4.4vw,42px);font-weight:700;letter-spacing:-.035em;line-height:1}
+.plus-mark em{font-family:var(--f-text);font-style:italic;font-weight:400;color:var(--gold)}
+.plus-sub{font-family:var(--f-data);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-top:8px;display:block}
+.yields{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:26px}
+.yield{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:20px 22px;box-shadow:var(--shadow)}
+.yield .slab{font-size:14px;color:var(--muted);display:block;margin-bottom:6px}
+.yield .rate{font-family:var(--f-data);font-size:clamp(30px,5vw,40px);font-weight:600;color:var(--gold);letter-spacing:-.03em;font-variant-numeric:tabular-nums;line-height:1}
+.yield .unit{font-size:13px;color:var(--muted);display:block;margin-top:6px}
+
+.illus{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:30px}
+.ill{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:22px;min-width:0}
+.ill.win{border-color:var(--gold);border-width:2px}
+.ill h4{font-size:16px;margin-bottom:4px}
+.ill .ill-tag{font-family:var(--f-data);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:14px}
+.ill dl{margin:0;display:grid;grid-template-columns:1fr auto;gap:10px 14px;font-size:14px}
+.ill dt{color:var(--muted);min-width:0}
+.ill dd{margin:0;font-family:var(--f-data);font-variant-numeric:tabular-nums;text-align:right;white-space:nowrap}
+.ill .big{font-size:22px;font-weight:600;letter-spacing:-.02em}
+.ill.win .big{color:var(--gold)}
+.benefit{
+  margin-top:16px;background:var(--surface);border:2px solid var(--gold);border-radius:10px;
+  padding:20px 24px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;
+}
+.benefit span{font-size:15px;font-weight:600;max-width:40ch}
+.benefit small{display:block;font-weight:400;color:var(--muted);font-size:13px;margin-top:3px}
+.benefit b{font-family:var(--f-data);font-size:clamp(26px,4.6vw,36px);color:var(--gold);letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.plusfeat{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:28px}
+.pf{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:16px;text-align:center}
+.pf svg{margin:0 auto 10px;display:block}
+.pf b{display:block;font-size:13.5px;font-weight:600}
+.pf small{display:block;font-size:12px;color:var(--muted);line-height:1.4;margin-top:4px}
+
+/* ---------- TABLES ---------- */
+.tablewrap{overflow-x:auto;margin-top:26px;border:1px solid var(--line);border-radius:10px;background:var(--surface);box-shadow:var(--shadow)}
+table{border-collapse:collapse;width:100%;min-width:620px;font-size:14px}
+caption{text-align:left;padding:16px 20px;font-size:13px;color:var(--muted);border-bottom:1px solid var(--line)}
+th,td{padding:12px 20px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+thead th{font-family:var(--f-data);font-size:10.5px;letter-spacing:.11em;text-transform:uppercase;color:var(--muted);background:var(--surface-2);font-weight:600}
+tbody th{font-weight:600;font-size:13.5px;color:var(--ink)}
+tbody tr:last-child td,tbody tr:last-child th{border-bottom:0}
+td{color:var(--muted)}
+.num{font-family:var(--f-data);font-variant-numeric:tabular-nums;white-space:nowrap}
+.swipe{display:none;font-family:var(--f-data);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:16px 0 -6px}
+
+/* ---------- TIERS ---------- */
+.tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:30px}
+.tier{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:24px;box-shadow:var(--shadow)}
+.tier.flag{border-color:var(--gold)}
+.tier-name{font-size:19px;font-weight:600;letter-spacing:-.02em}
+.tier-bal{font-family:var(--f-data);font-size:13px;color:var(--gold);margin-top:4px;display:block}
+.tier ul{list-style:none;margin:16px 0 0;padding:0;display:grid;gap:8px;font-size:14px;color:var(--muted)}
+.tier li{padding-left:18px;position:relative}
+.tier li::before{content:"";position:absolute;left:0;top:9px;width:7px;height:7px;border-radius:50%;background:var(--brand)}
+
+/* ---------- REMITTANCE ---------- */
+.remit{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:30px;align-items:start}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:26px;box-shadow:var(--shadow);min-width:0}
+.panel h3{margin-bottom:10px}
+.panel p{font-size:14.5px;color:var(--muted)}
+.addr{
+  font-family:var(--f-data);font-size:14px;background:var(--surface-2);border:1px solid var(--line);
+  border-radius:6px;padding:12px 14px;margin:12px 0;word-break:break-all;color:var(--ink);
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+}
+.copy{background:none;border:1px solid var(--line);border-radius:4px;color:var(--muted);font-family:var(--f-data);font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:6px 9px;cursor:pointer;flex:none}
+.copy:hover{border-color:var(--brand);color:var(--brand)}
+.checklist{list-style:none;margin:14px 0 0;padding:0;display:grid;gap:10px;counter-reset:c}
+.checklist li{position:relative;padding-left:30px;font-size:14px;color:var(--muted)}
+.checklist li::before{
+  counter-increment:c;content:counter(c);position:absolute;left:0;top:1px;
+  width:20px;height:20px;border-radius:50%;background:var(--brand-soft);color:var(--brand);
+  font-family:var(--f-data);font-size:10.5px;font-weight:600;display:grid;place-items:center;
+}
+
+/* ---------- RETURN PATH ---------- */
+.path{list-style:none;margin:30px 0 0;padding:0;display:grid;gap:0}
+.path li{position:relative;padding:0 0 26px 46px}
+.path li:last-child{padding-bottom:0}
+.path li::before{content:"";position:absolute;left:14px;top:28px;bottom:-2px;width:2px;background:var(--line)}
+.path li:last-child::before{display:none}
+.path .node{position:absolute;left:0;top:0;width:30px;height:30px;border-radius:50%;background:var(--gold-soft);border:1px solid var(--gold);color:var(--gold);display:grid;place-items:center;font-family:var(--f-data);font-size:12px;font-weight:600}
+.path b{display:block;font-size:16.5px;margin-bottom:3px}
+.path p{font-size:14.5px;color:var(--muted);margin:0}
+
+/* ---------- FAQ ---------- */
+details{border-bottom:1px solid var(--line);padding:16px 0}
+summary{cursor:pointer;font-weight:600;font-size:15.5px;list-style:none;display:flex;justify-content:space-between;gap:16px;align-items:center}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";color:var(--brand);font-family:var(--f-data);font-size:17px;flex:none}
+details[open] summary::after{content:"\2212"}
+details p{margin:10px 0 0;font-size:14.5px;color:var(--muted);font-family:var(--f-text)}
+
+/* ---------- FOOTER ---------- */
+.foot{background:linear-gradient(165deg,var(--hero-a),var(--hero-b));color:var(--on-hero)}
+.foot>.wrap{padding-block:60px}
+.foot .eyebrow{color:var(--gold)}
+.foot .lede{color:#CDD7EC}
+.contacts{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:28px}
+.contacts div{min-width:0}
+.contacts span{display:block;font-family:var(--f-data);font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--on-hero-dim);margin-bottom:6px}
+.contacts b{font-weight:600;font-size:15px;display:block;word-break:break-word}
+.contacts small{color:var(--on-hero-dim);font-size:12.5px;display:block;margin-top:3px}
+.legal{font-size:12px;color:var(--on-hero-dim);margin-top:36px;max-width:84ch;line-height:1.6}
+.strip{background:var(--hero-a);color:var(--on-hero-dim);text-align:center;padding:15px 16px;font-family:var(--f-data);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase}
+
+@media (max-width:900px){
+  .herogrid{grid-template-columns:1fr;gap:30px}
+  .accounts,.remit{grid-template-columns:1fr}
+  .tiers{grid-template-columns:1fr}
+  .illus{grid-template-columns:1fr}
+  .plusfeat{grid-template-columns:repeat(2,1fr)}
+  .rail{grid-template-columns:repeat(2,1fr)}
+  .contacts{grid-template-columns:1fr}
+}
+@media (max-width:560px){
+  section>.wrap{padding-block:52px}
+  .hero>.wrap{padding-block:26px 0}
+  .masthead{padding-bottom:28px}
+  .herogrid{padding-bottom:38px}
+  .herocta .btn{flex:1 1 auto;justify-content:center}
+  .chooser,.acct,.panel,.tier,.ill{padding:20px}
+  .yields{grid-template-columns:1fr}
+  .benefit{padding:18px}
+  .opt{padding:14px}
+  table{min-width:520px}
+  th,td{padding:11px 14px}
+  .swipe{display:block}
+  .facts li{flex-direction:column;gap:2px}
+  .facts .k{width:auto}
+  summary{font-size:15px;padding:5px 0}
+}
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="wrap">
+    <div class="masthead">
+      <div class="logo">
+        <div class="logo-badge">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M4 10.5 12 4l8 6.5" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"/>
+            <path d="M6.5 11v7M12 11v7M17.5 11v7" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/>
+            <path d="M3.5 20.5h17" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="logo-name">Indian Overseas Bank<span>NRI Services</span></div>
+      </div>
+      <div class="deskpill">NRE · NRO · FCNR(B) · RFC</div>
+    </div>
+
+    <div class="herogrid">
+      <div>
+        <p class="eyebrow">Banking for Indians abroad</p>
+        <h1>Your money has two homes. <em>Keep both in order.</em></h1>
+        <p class="lede">Four account types, one rule each. What you earned abroad, what you earn in India, and what comes back with you are treated differently by FEMA — and choosing the right account decides whether your interest is taxed and whether your money can leave again.</p>
+        <div class="herocta">
+          <a class="btn btn-gold" href="#chooser">Find my account
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a class="btn btn-line" href="#nriplus">NRI Plus — up to 9.12%</a>
+          <a class="btn btn-line" href="#compare">Compare all four</a>
+          <a class="btn btn-line" href="#remit">Track a remittance</a>
+        </div>
+      </div>
+
+      <svg class="heroart" viewBox="0 0 480 330" role="img" aria-label="Money sent from abroad arriving in an account in India, with the four account types marked along the way">
+        <defs>
+          <linearGradient id="arc" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#A8741A" stop-opacity=".25"/>
+            <stop offset="50%" stop-color="#DCA955"/>
+            <stop offset="100%" stop-color="#A8741A" stop-opacity=".25"/>
+          </linearGradient>
+        </defs>
+        <circle cx="240" cy="168" r="132" fill="none" stroke="rgba(255,255,255,.12)"/>
+        <circle cx="240" cy="168" r="98" fill="none" stroke="rgba(255,255,255,.08)"/>
+
+        <!-- abroad -->
+        <g>
+          <rect x="22" y="150" width="20" height="62" rx="2" fill="rgba(255,255,255,.14)" stroke="rgba(255,255,255,.3)"/>
+          <rect x="46" y="128" width="26" height="84" rx="2" fill="rgba(255,255,255,.18)" stroke="rgba(255,255,255,.34)"/>
+          <rect x="76" y="162" width="18" height="50" rx="2" fill="rgba(255,255,255,.12)" stroke="rgba(255,255,255,.28)"/>
+          <text x="58" y="234" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" letter-spacing="1.6" fill="#A3AECB">ABROAD</text>
+        </g>
+
+        <!-- arc -->
+        <path d="M96 150C150 70 330 70 392 150" fill="none" stroke="url(#arc)" stroke-width="2.5" stroke-dasharray="6 6"/>
+        <circle cx="244" cy="98" r="5" fill="#DCA955"/>
+
+        <!-- india -->
+        <g>
+          <path d="M392 148l34 22h-68z" fill="rgba(255,255,255,.2)" stroke="rgba(255,255,255,.36)" stroke-linejoin="round"/>
+          <rect x="360" y="170" width="64" height="42" fill="rgba(255,255,255,.12)" stroke="rgba(255,255,255,.3)"/>
+          <path d="M374 170v42M392 170v42M410 170v42" stroke="rgba(255,255,255,.3)"/>
+          <text x="392" y="234" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" letter-spacing="1.6" fill="#A3AECB">INDIA</text>
+        </g>
+
+        <!-- account chips -->
+        <g font-family="JetBrains Mono, monospace" font-size="10.5" font-weight="600">
+          <rect x="128" y="258" width="56" height="26" rx="6" fill="rgba(255,255,255,.1)" stroke="rgba(255,255,255,.26)"/>
+          <text x="156" y="275" text-anchor="middle" fill="#F2F3F7">NRE</text>
+          <rect x="192" y="258" width="56" height="26" rx="6" fill="rgba(255,255,255,.1)" stroke="rgba(255,255,255,.26)"/>
+          <text x="220" y="275" text-anchor="middle" fill="#F2F3F7">NRO</text>
+          <rect x="256" y="258" width="72" height="26" rx="6" fill="rgba(255,255,255,.1)" stroke="rgba(255,255,255,.26)"/>
+          <text x="292" y="275" text-anchor="middle" fill="#F2F3F7">FCNR</text>
+          <rect x="336" y="258" width="56" height="26" rx="6" fill="rgba(255,255,255,.1)" stroke="rgba(255,255,255,.26)"/>
+          <text x="364" y="275" text-anchor="middle" fill="#F2F3F7">RFC</text>
+        </g>
+        <text x="240" y="306" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9.5" letter-spacing="1.4" fill="#A3AECB">ONE OF THESE FITS YOUR SITUATION</text>
+      </svg>
+    </div>
+  </div>
+
+  <div class="railwrap">
+    <div class="wrap" style="padding-left:0;padding-right:0">
+      <div class="rail">
+        <div><b>9 currencies</b><span>USD, GBP, EUR, JPY, CAD, AUD, NZD, CHF, SGD on FCNR(B)</span></div>
+        <div><b>Tax-free</b><span>Interest on NRE deposits is exempt from Indian income tax</span></div>
+        <div><b>USD 1 million</b><span>Repatriable from an NRO account per financial year</span></div>
+        <div><b>9.12%</b><span>NRI Plus one-year yield on deposits above Rs. 10 lakh</span></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section id="chooser">
+  <div class="wrap">
+    <p class="eyebrow">Start here</p>
+    <h2>Which account do you actually need?</h2>
+    <p class="sub">Three questions. The answer depends on where you live, where the money was earned, and whether you want to hold it in rupees.</p>
+
+    <div class="chooser">
+      <div class="q-step on" id="s1">
+        <span class="q-count">Question 1 of 3</span>
+        <div class="q-text">Where are you living right now?</div>
+        <div class="opts">
+          <button class="opt" data-go="s2"><span><b>I live and work outside India</b><small>You are a Non-Resident Indian or a Person of Indian Origin.</small></span><span class="arrow">&rarr;</span></button>
+          <button class="opt" data-answer="rfc"><span><b>I have returned to India for good</b><small>You were abroad for at least one year and have come back to settle permanently.</small></span><span class="arrow">&rarr;</span></button>
+        </div>
+      </div>
+
+      <div class="q-step" id="s2">
+        <span class="q-count">Question 2 of 3</span>
+        <div class="q-text">Which money are you banking?</div>
+        <div class="opts">
+          <button class="opt" data-go="s3"><span><b>What I earn abroad</b><small>Salary, savings or remittances you send to India from overseas.</small></span><span class="arrow">&rarr;</span></button>
+          <button class="opt" data-answer="nro"><span><b>Income that arises in India</b><small>Rent, dividends, pension, or interest earned on assets you hold in India.</small></span><span class="arrow">&rarr;</span></button>
+        </div>
+        <button class="q-back" data-back="s1">Back</button>
+      </div>
+
+      <div class="q-step" id="s3">
+        <span class="q-count">Question 3 of 3</span>
+        <div class="q-text">Hold it in rupees, or keep it in foreign currency?</div>
+        <div class="opts">
+          <button class="opt" data-answer="nre"><span><b>Rupees, with day-to-day access</b><small>Savings, current or term deposit. You accept the exchange rate at the time you convert.</small></span><span class="arrow">&rarr;</span></button>
+          <button class="opt" data-answer="fcnr"><span><b>Foreign currency, locked as a deposit</b><small>You would rather not carry rupee exchange risk at all.</small></span><span class="arrow">&rarr;</span></button>
+        </div>
+        <button class="q-back" data-back="s2">Back</button>
+      </div>
+
+      <div class="answer" id="ans">
+        <span class="tag">Your match</span>
+        <h3 id="ans-title">—</h3>
+        <p id="ans-body"></p>
+        <div class="why" id="ans-why"></div>
+        <button class="btn btn-gold" id="restart" type="button">Start over</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band">
+  <div class="wrap">
+    <p class="eyebrow">The four accounts</p>
+    <h2>What each one is for</h2>
+    <p class="sub">Every NRI product at IOB is one of these four. The difference that matters most is the last line of each card: whether the money can leave India again, and whether the interest is taxed here.</p>
+
+    <div class="accounts">
+      <article class="acct" id="nre">
+        <div class="acct-head"><span class="acct-code">NRE</span><span class="acct-full">Non-Resident External</span></div>
+        <p>For money you earn abroad and want to hold in India, in rupees. The default account for most NRIs.</p>
+        <ul class="facts">
+          <li><span class="k">Held in</span><span class="v">Indian rupees — savings, current or term deposit</span></li>
+          <li><span class="k">Who</span><span class="v">NRIs and PIOs, singly or jointly with former-or-survivor</span></li>
+          <li><span class="k">Nominee</span><span class="v">May be a resident Indian</span></li>
+          <li><span class="k">Operation</span><span class="v">A power of attorney or mandate holder can make local payments</span></li>
+          <li><span class="k">Loans</span><span class="v">Available against NRE term deposits</span></li>
+          <li><span class="k">Interest</span><span class="v"><span class="pill p-good">Tax-free in India</span></span></li>
+          <li><span class="k">Taking it out</span><span class="v"><span class="pill p-good">Fully repatriable</span></span></li>
+        </ul>
+        <div class="ccy"><span>INR</span></div>
+      </article>
+
+      <article class="acct" id="nro">
+        <div class="acct-head"><span class="acct-code">NRO</span><span class="acct-full">Non-Resident Ordinary</span></div>
+        <p>For income that arises in India — rent, dividends, pension, interest. If you moved abroad, your existing resident account becomes this one.</p>
+        <ul class="facts">
+          <li><span class="k">Held in</span><span class="v">Indian rupees — savings, current or term deposit</span></li>
+          <li><span class="k">Who</span><span class="v">NRIs and PIOs; jointly with another NRI/PIO, or with a close resident relative on former-or-survivor</span></li>
+          <li><span class="k">Credits</span><span class="v">Remittances from abroad, and legitimate dues payable to you in India</span></li>
+          <li><span class="k">Debits</span><span class="v">Local rupee payments, including RBI-compliant investments in India</span></li>
+          <li><span class="k">Approval</span><span class="v">Bangladeshi or Pakistani nationality or ownership needs prior RBI approval</span></li>
+          <li><span class="k">Interest</span><span class="v"><span class="pill p-warn">Subject to Indian income tax</span></span></li>
+          <li><span class="k">Taking it out</span><span class="v"><span class="pill p-info">Current income, plus up to USD 1 million a year</span></span></li>
+        </ul>
+        <div class="ccy"><span>INR</span></div>
+      </article>
+
+      <article class="acct" id="fcnr">
+        <div class="acct-head"><span class="acct-code">FCNR(B)</span><span class="acct-full">Foreign Currency Non-Resident (Banks)</span></div>
+        <p>A term deposit that stays in the currency you deposited. Nothing is converted to rupees, so the exchange rate cannot work against you while the deposit runs.</p>
+        <ul class="facts">
+          <li><span class="k">Held in</span><span class="v">Foreign currency — term deposit only</span></li>
+          <li><span class="k">Tenure</span><span class="v">1 to 5 years</span></li>
+          <li><span class="k">Minimum</span><span class="v">1,000 units of the currency; JPY 100,000</span></li>
+          <li><span class="k">Interest</span><span class="v">Compounded half-yearly, paid at maturity in the deposit currency</span></li>
+          <li><span class="k">Early closure</span><span class="v">1% below the rate for the period run; no interest at all before one year</span></li>
+          <li><span class="k">Loans</span><span class="v">Available in rupees against the deposit, subject to usual margin</span></li>
+          <li><span class="k">Where</span><span class="v">Opened at designated branches only</span></li>
+          <li><span class="k">Taking it out</span><span class="v"><span class="pill p-good">Maturity proceeds fully repatriable</span></span></li>
+        </ul>
+        <div class="ccy"><span>USD</span><span>GBP</span><span>EUR</span><span>JPY</span><span>CAD</span><span>AUD</span><span>NZD</span><span>CHF</span><span>SGD</span></div>
+      </article>
+
+      <article class="acct" id="rfc">
+        <div class="acct-head"><span class="acct-code">RFC</span><span class="acct-full">Resident Foreign Currency</span></div>
+        <p>For when you come home. An NRI returning to India permanently can keep foreign earnings in foreign currency instead of converting everything at once.</p>
+        <ul class="facts">
+          <li><span class="k">Held in</span><span class="v">Foreign currency — savings or term deposit</span></li>
+          <li><span class="k">Who</span><span class="v">An NRI who has returned to settle in India after at least one year abroad</span></li>
+          <li><span class="k">Approval</span><span class="v"><span class="pill p-good">No RBI approval needed</span></span></li>
+          <li><span class="k">Fund it with</span><span class="v">Your NRE and FCNR balances on return, income or sale proceeds from overseas assets, and your entire pension received from abroad</span></li>
+          <li><span class="k">Going abroad again</span><span class="v">Transfer the funds back to NRE or FCNR accounts</span></li>
+          <li><span class="k">Interest</span><span class="v"><span class="pill p-warn">Taxable</span></span></li>
+          <li><span class="k">Taking it out</span><span class="v"><span class="pill p-info">Remittable abroad for bona fide purposes, for you or your dependents</span></span></li>
+        </ul>
+        <div class="ccy"><span>USD</span><span>EUR</span><span>GBP</span><span>JPY</span><span>AUD</span><span>CAD</span></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="plus" id="nriplus">
+  <div class="wrap">
+    <p class="eyebrow">Featured deposit scheme</p>
+    <div class="plus-head">
+      <div>
+        <div class="plus-mark">NRI <em>Plus</em></div>
+        <span class="plus-sub">Fixed deposit scheme · higher returns, greater possibilities</span>
+      </div>
+    </div>
+    <p class="lede" style="margin-top:20px;max-width:62ch">A simple way for NRIs to grow savings in India: a one-year rupee fixed deposit priced well above the bank's ordinary deposit rate, backed by a public sector bank.</p>
+
+    <div class="yields">
+      <div class="yield">
+        <span class="slab">Deposit up to Rs. 10 lakh</span>
+        <span class="rate">9.06%</span>
+        <span class="unit">Annualised yield, 1 year</span>
+      </div>
+      <div class="yield">
+        <span class="slab">Deposit above Rs. 10 lakh</span>
+        <span class="rate">9.12%</span>
+        <span class="unit">Annualised yield, 1 year</span>
+      </div>
+    </div>
+
+    <h3 style="margin-top:36px;font-size:19px">What the difference looks like on Rs. 1 crore</h3>
+    <div class="illus">
+      <div class="ill win">
+        <h4>NRI Plus</h4>
+        <span class="ill-tag">One year</span>
+        <dl>
+          <dt>Deposit amount</dt><dd>Rs. 1,00,00,000</dd>
+          <dt>Interest earned</dt><dd>Rs. 9,11,745</dd>
+          <dt>Maturity amount</dt><dd>Rs. 1,09,11,745</dd>
+          <dt>Annualised yield</dt><dd class="big">9.12%</dd>
+        </dl>
+      </div>
+      <div class="ill">
+        <h4>Normal deposit scheme</h4>
+        <span class="ill-tag">One year</span>
+        <dl>
+          <dt>Deposit amount</dt><dd>Rs. 1,00,00,000</dd>
+          <dt>Interest earned</dt><dd>Rs. 6,76,515</dd>
+          <dt>Maturity amount</dt><dd>Rs. 1,06,76,515</dd>
+          <dt>Annualised yield</dt><dd class="big">6.77%</dd>
+        </dl>
+      </div>
+    </div>
+    <div class="benefit">
+      <span>Net additional benefit with NRI Plus<small>Extra interest over the same deposit in the normal scheme, over one year</small></span>
+      <b>Rs. 2,35,230</b>
+    </div>
+
+    <div class="plusfeat">
+      <div class="pf">
+        <svg width="26" height="26" viewBox="0 0 28 28" fill="none" aria-hidden="true"><path d="M4 21l6-7 5 4 9-11" stroke="var(--gold)" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/><path d="M18 7h6v6" stroke="var(--gold)" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <b>Higher returns</b><small>Attractive yields on your savings</small>
+      </div>
+      <div class="pf">
+        <svg width="26" height="26" viewBox="0 0 28 28" fill="none" aria-hidden="true"><path d="M14 3l9 3.5V14c0 6-4 9.8-9 11-5-1.2-9-5-9-11V6.5L14 3z" stroke="var(--brand)" stroke-width="1.8" stroke-linejoin="round"/><path d="M10 14l3 3 5-5.5" stroke="var(--brand)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <b>Safe and secure</b><small>Backed by a public sector bank</small>
+      </div>
+      <div class="pf">
+        <svg width="26" height="26" viewBox="0 0 28 28" fill="none" aria-hidden="true"><circle cx="14" cy="14" r="11" stroke="var(--brand)" stroke-width="1.8"/><path d="M3 14h22M14 3c3.5 3.6 3.5 18.4 0 22M14 3c-3.5 3.6-3.5 18.4 0 22" stroke="var(--brand)" stroke-width="1.5"/></svg>
+        <b>Ideal for NRIs</b><small>Strengthen your financial roots in India</small>
+      </div>
+      <div class="pf">
+        <svg width="26" height="26" viewBox="0 0 28 28" fill="none" aria-hidden="true"><circle cx="14" cy="14" r="11" stroke="var(--brand)" stroke-width="1.8"/><path d="M10 9h7a3.5 3.5 0 0 1 0 7h-7m0-3.5h9m-3 9-6-5.5" stroke="var(--brand)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <b>Flexible investment</b><small>Choose the amount that suits your plan</small>
+      </div>
+      <div class="pf">
+        <svg width="26" height="26" viewBox="0 0 28 28" fill="none" aria-hidden="true"><circle cx="11" cy="10" r="4" stroke="var(--brand)" stroke-width="1.8"/><circle cx="20" cy="12" r="3" stroke="var(--brand)" stroke-width="1.8"/><path d="M3 23c0-4 3.4-6.5 8-6.5s8 2.5 8 6.5" stroke="var(--brand)" stroke-width="1.8" stroke-linecap="round"/><path d="M20 17.5c3.4 0 5 1.6 5 5.5" stroke="var(--brand)" stroke-width="1.8" stroke-linecap="round"/></svg>
+        <b>Dedicated support</b><small>Personalised assistance throughout</small>
+      </div>
+    </div>
+
+    <p class="sub" style="margin-top:22px">Yields shown are the scheme rates as published by the bank and are indicative — deposit rates are revised from time to time, so confirm the rate applicable on the day you book. The illustration assumes a one-year deposit of Rs. 1 crore and compares the scheme yield against the ordinary deposit yield of 6.77% for the same amount and period.</p>
+  </div>
+</section>
+
+<section class="band" id="compare">
+  <div class="wrap">
+    <p class="eyebrow">Side by side</p>
+    <h2>The differences that decide it</h2>
+    <p class="swipe">Swipe the table sideways for all four</p>
+    <div class="tablewrap">
+      <table>
+        <caption>All four NRI account types at a glance</caption>
+        <thead>
+          <tr><th scope="col">&nbsp;</th><th scope="col">NRE</th><th scope="col">NRO</th><th scope="col">FCNR(B)</th><th scope="col">RFC</th></tr>
+        </thead>
+        <tbody>
+          <tr><th scope="row">Currency</th><td>Indian rupees</td><td>Indian rupees</td><td>9 foreign currencies</td><td>6 foreign currencies</td></tr>
+          <tr><th scope="row">Account forms</th><td>Savings, current, term deposit</td><td>Savings, current, term deposit</td><td>Term deposit only</td><td>Savings or term deposit</td></tr>
+          <tr><th scope="row">Who it is for</th><td>NRIs and PIOs banking overseas earnings</td><td>NRIs and PIOs with income arising in India</td><td>NRIs and PIOs avoiding rupee exchange risk</td><td>NRIs who have returned to India for good</td></tr>
+          <tr><th scope="row">Interest taxed in India</th><td><span class="pill p-good">No</span></td><td><span class="pill p-warn">Yes</span></td><td>See current rates</td><td><span class="pill p-warn">Yes</span></td></tr>
+          <tr><th scope="row">Repatriation</th><td>Full</td><td>Current income, plus up to USD 1 million per financial year</td><td>Maturity proceeds in full</td><td>Remittable for bona fide purposes</td></tr>
+          <tr><th scope="row">Joint holding</th><td>With NRIs; with a resident on former-or-survivor</td><td>With NRIs/PIOs, or a close resident relative</td><td>With a resident close relative, former-or-survivor</td><td>Not stated by the bank</td></tr>
+          <tr><th scope="row">Tenure</th><td>As chosen</td><td>As chosen</td><td class="num">1–5 years</td><td>As chosen</td></tr>
+          <tr><th scope="row">Minimum deposit</th><td>As per scheme tier</td><td>As per scheme tier</td><td class="num">1,000 units (JPY 100,000)</td><td>Not stated by the bank</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="sub" style="margin-top:16px">Interest rates are published separately by the bank under Rates at a Glance and change periodically, so they are not reproduced here.</p>
+  </div>
+</section>
+
+<section class="band">
+  <div class="wrap">
+    <p class="eyebrow">NRI savings tiers</p>
+    <h2>Elevate, Privilege and Signature</h2>
+    <p class="sub">Three service tiers on NRE and NRO savings accounts, set by the quarterly average balance you maintain — or by the term deposit you hold instead.</p>
+
+    <div class="tiers">
+      <div class="tier">
+        <div class="tier-name">NRI Elevate</div>
+        <span class="tier-bal">Rs. 50,000 QAB · or Rs. 5 lakh term deposit</span>
+        <ul>
+          <li>Personal accident cover in India of Rs. 10 lakh</li>
+          <li>VISA Gold or RuPay Platinum debit card</li>
+          <li>10% concession on outward remittance charges</li>
+          <li>15% locker rent concession after one year</li>
+          <li>Home loan processing fee waived in full above Rs. 25 lakh, otherwise half</li>
+          <li>25% concession on vehicle loan processing fees</li>
+        </ul>
+      </div>
+      <div class="tier">
+        <div class="tier-name">NRI Privilege</div>
+        <span class="tier-bal">Rs. 1 lakh QAB · or Rs. 10 lakh term deposit</span>
+        <ul>
+          <li>Personal accident cover in India of Rs. 20 lakh</li>
+          <li>VISA Signature or RuPay Select debit card</li>
+          <li>25% concession on outward remittance charges</li>
+          <li>25% locker rent concession after one year</li>
+          <li>Home loan processing fee waived in full</li>
+          <li>Sweep of NRE and NRO balances above Rs. 3 lakh into flexi fixed deposits</li>
+        </ul>
+      </div>
+      <div class="tier flag">
+        <div class="tier-name">NRI Signature</div>
+        <span class="tier-bal">Rs. 2 lakh QAB · or Rs. 20 lakh term deposit</span>
+        <ul>
+          <li>A dedicated relationship manager</li>
+          <li>Personal accident cover in India of Rs. 30 lakh</li>
+          <li>50% concession on outward remittance charges</li>
+          <li>50% locker rent concession after one year</li>
+          <li>Home and vehicle loan processing fees waived in full</li>
+          <li>Sweep of NRE and NRO balances above Rs. 3 lakh into flexi fixed deposits</li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="swipe">Swipe the table sideways for all three tiers</p>
+    <div class="tablewrap">
+      <table>
+        <caption>Tier benefits compared</caption>
+        <thead><tr><th scope="col">Benefit</th><th scope="col">Elevate</th><th scope="col">Privilege</th><th scope="col">Signature</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Quarterly average balance</th><td class="num">Rs. 50,000</td><td class="num">Rs. 1 lakh</td><td class="num">Rs. 2 lakh</td></tr>
+          <tr><th scope="row">Or term deposit held</th><td class="num">Rs. 5 lakh</td><td class="num">Rs. 10 lakh</td><td class="num">Rs. 20 lakh</td></tr>
+          <tr><th scope="row">Relationship manager</th><td>No</td><td>No</td><td><span class="pill p-good">Yes</span></td></tr>
+          <tr><th scope="row">Inward remittance charges</th><td><span class="pill p-good">Nil</span></td><td><span class="pill p-good">Nil</span></td><td><span class="pill p-good">Nil</span></td></tr>
+          <tr><th scope="row">Outward remittance concession</th><td class="num">10%</td><td class="num">25%</td><td class="num">50%</td></tr>
+          <tr><th scope="row">Personal accident cover in India</th><td class="num">Rs. 10 lakh</td><td class="num">Rs. 20 lakh</td><td class="num">Rs. 30 lakh</td></tr>
+          <tr><th scope="row">Locker rent concession (after 1 year)</th><td class="num">15%</td><td class="num">25%</td><td class="num">50%</td></tr>
+          <tr><th scope="row">Home loan processing fee</th><td>100% above Rs. 25 lakh, else 50%</td><td class="num">100%</td><td class="num">100%</td></tr>
+          <tr><th scope="row">Vehicle loan processing fee</th><td class="num">25%</td><td class="num">50%</td><td class="num">100%</td></tr>
+          <tr><th scope="row">Debit card</th><td>VISA Gold / RuPay Platinum</td><td>VISA Signature / RuPay Select</td><td>VISA Signature / RuPay Select</td></tr>
+          <tr><th scope="row">NEFT, RTGS and IMPS</th><td><span class="pill p-good">Nil</span></td><td><span class="pill p-good">Nil</span></td><td><span class="pill p-good">Nil</span></td></tr>
+          <tr><th scope="row">Internet and mobile banking</th><td>Free</td><td>Free</td><td>Free</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="sub" style="margin-top:16px">The bank also publishes preferential inward remittance rates above the TT buying rate, which vary by tier and amount, along with ATM, point-of-sale and e-commerce limits and cheque book terms.</p>
+  </div>
+</section>
+
+<section class="band" id="remit">
+  <div class="wrap">
+    <p class="eyebrow">Remittances</p>
+    <h2>When money is on its way and you want to find it</h2>
+    <p class="sub">A remittance that has not shown up in the account is usually traceable. Which address to write to depends on how it was sent.</p>
+
+    <div class="remit">
+      <div class="panel">
+        <h3>Sent to IOB by SWIFT, an exchange house or an overseas branch</h3>
+        <p>Write to the foreign department with the details below. The more of them you include, the faster the trace.</p>
+        <div class="addr"><span>fedcar@iobnet.co.in</span><button class="copy" type="button" data-copy="fedcar@iobnet.co.in">Copy</button></div>
+        <ol class="checklist">
+          <li>Date, currency and amount of the remittance</li>
+          <li>Reference number, if sent through an exchange house tied up with IOB or an IOB overseas branch</li>
+          <li>SWIFT message details, or a copy of the message, if sent by SWIFT</li>
+          <li>Originating country and the sending bank with its SWIFT BIC</li>
+          <li>Name of any intermediary bank, with its SWIFT BIC</li>
+          <li>Name and address of the remitter</li>
+          <li>Beneficiary name, the 15-digit account number, and the IOB branch holding the account</li>
+          <li>Any special instruction — for example to open an FCNR(B) deposit, or not to convert the currency</li>
+        </ol>
+      </div>
+
+      <div class="panel">
+        <h3>Converted by another bank and credited by NEFT or RTGS</h3>
+        <p>If the remitter's bank or another Indian bank converted the currency and sent rupees straight to the account, the trace belongs with the RTGS cell instead. Quote the UTR number.</p>
+        <div class="addr"><span>rtgscell@iobnet.co.in</span><button class="copy" type="button" data-copy="rtgscell@iobnet.co.in">Copy</button></div>
+        <p style="margin-top:18px"><strong>Before you write.</strong> Have the UTR from the sending bank, the date and amount, and the beneficiary account number ready. Without the UTR a NEFT or RTGS credit is difficult to place.</p>
+        <p>Inward remittance charges are nil across all three NRI savings tiers, so a shortfall in the credited amount is normally the work of an intermediary bank abroad rather than a charge at this end.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band">
+  <div class="wrap">
+    <p class="eyebrow">Coming home</p>
+    <h2>What happens to the accounts when you return</h2>
+    <p class="sub">Returning to India permanently changes your residential status, and the accounts have to follow. The path runs in both directions.</p>
+    <ol class="path">
+      <li>
+        <span class="node">1</span>
+        <b>You return to settle in India</b>
+        <p>After at least one year abroad, you can open a Resident Foreign Currency account without any approval from the Reserve Bank of India.</p>
+      </li>
+      <li>
+        <span class="node">2</span>
+        <b>NRE and FCNR balances move into RFC</b>
+        <p>What you held in those accounts at the time of return can be transferred across and stay in foreign currency, instead of being converted to rupees on a single day's rate.</p>
+      </li>
+      <li>
+        <span class="node">3</span>
+        <b>Overseas income keeps flowing in</b>
+        <p>Income from assets you still hold abroad, the proceeds when you sell them, and the whole of a pension received from abroad can be credited to the RFC account.</p>
+      </li>
+      <li>
+        <span class="node">4</span>
+        <b>If you go abroad again, it reverses</b>
+        <p>Funds in the RFC account can be transferred back to NRE or FCNR accounts. Interest on RFC is taxable while you are resident, so the move back matters.</p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<section class="band">
+  <div class="wrap">
+    <p class="eyebrow">Questions</p>
+    <h2>What NRI customers ask</h2>
+    <details open>
+      <summary>Is the interest on my NRE account really tax-free?</summary>
+      <p>Interest on NRE accounts is exempt from Indian income tax, and the balance is fully repatriable. Interest on NRO and RFC accounts is taxable. That single difference is the main reason to keep overseas earnings in an NRE account and Indian income in an NRO account rather than mixing them.</p>
+    </details>
+    <details>
+      <summary>How much can I send out of my NRO account?</summary>
+      <p>Current income such as rent, dividends, pension or interest can be remitted abroad, and beyond that up to USD 1 million per financial year, which runs April to March, for bona fide purposes and subject to the bank being satisfied with the documentation.</p>
+    </details>
+    <details>
+      <summary>I moved abroad. What happens to the account I already had?</summary>
+      <p>It is redesignated as an NRO account. You do not close it and start again — the existing account continues under the non-resident rules.</p>
+    </details>
+    <details>
+      <summary>Can I close an FCNR deposit early?</summary>
+      <p>Yes. Interest is then paid at one percent below the rate applicable for the period the deposit actually ran. If the deposit is closed before it completes one year, no interest is paid at all.</p>
+    </details>
+    <details>
+      <summary>What is NRI Plus, and which account does it sit in?</summary>
+      <p>NRI Plus is a one-year rupee fixed deposit scheme for NRIs, priced above the bank's ordinary deposit rate: 9.06% annualised up to Rs. 10 lakh and 9.12% above it. Like any rupee deposit it is booked under your NRE or NRO account, so the tax and repatriation rules of that account still apply. Deposit rates are revised periodically, so confirm the rate on the day you book.</p>
+    </details>
+    <details>
+      <summary>Can a resident relative be on the account with me?</summary>
+      <p>Yes, in several cases. NRE accounts may be held jointly with a resident on a former-or-survivor basis, NRO accounts jointly with a close resident relative, and FCNR deposits jointly with a resident close relative on former-or-survivor. An NRE nominee may be a resident Indian.</p>
+    </details>
+    <details>
+      <summary>Can someone in India operate my account for me?</summary>
+      <p>An NRE account can be operated by a power of attorney or mandate holder for making local payments. It is the usual arrangement for NRIs who need bills and commitments in India handled while they are away.</p>
+    </details>
+    <details>
+      <summary>Does any of this need Reserve Bank approval?</summary>
+      <p>Opening an NRO account for an individual or entity of Bangladeshi or Pakistani nationality or ownership requires prior approval from the Reserve Bank of India. Opening an RFC account on return to India does not require approval.</p>
+    </details>
+  </div>
+</section>
+
+<footer class="foot">
+  <div class="wrap">
+    <p class="eyebrow">NRI help desk</p>
+    <h2>Talk to someone about your account</h2>
+    <p class="lede" style="font-size:17px">The NRI help desk and the NRI Self Service Portal handle account queries, remittance traces and service requests from any time zone.</p>
+    <div class="contacts">
+      <div><span>Toll free</span><b>1800 890 4445</b><b>1800 425 4445</b></div>
+      <div><span>Customer service</span><b>044-28525496</b><b>044-28591029</b><small>Digital complaints: 044-24371120</small></div>
+      <div><span>Remittance trace</span><b>fedcar@iobnet.co.in</b><small>NEFT / RTGS credits: rtgscell@iobnet.co.in</small></div>
+    </div>
+    <p class="legal">This page summarises Indian Overseas Bank's published NRI product information for reference. It is not a contractual offer and not tax advice. All accounts are governed by FEMA, Reserve Bank of India regulations and the bank's own terms, which take precedence over anything stated here. Interest rates, charges, tier benefits and limits change from time to time and are published separately by the bank — confirm current terms with the branch or the NRI help desk before acting. Taxation depends on your personal circumstances and any applicable double taxation avoidance agreement.</p>
+  </div>
+  <div class="strip">Indian Overseas Bank · NRI Services</div>
+</footer>
+
+<script>
+(function(){
+  var ANS = {
+    nre: {
+      t: "NRE — Non-Resident External account",
+      b: "Hold your overseas earnings in India in rupees, with the interest exempt from Indian income tax and the whole balance free to go back out again whenever you want it.",
+      w: "You live abroad, the money was earned abroad, and you want it in rupees with everyday access. NRE is the account most NRIs use as their main one. Open it as savings, current or a term deposit, and you can borrow against an NRE term deposit without breaking it."
+    },
+    nro: {
+      t: "NRO — Non-Resident Ordinary account",
+      b: "The account for money that arises in India — rent from a flat, dividends, a pension, interest on Indian deposits — kept separate from your overseas earnings.",
+      w: "Indian income has to sit in an NRO account, not an NRE one. The interest is taxable here, and repatriation is capped at your current income plus USD 1 million per financial year. If you already had a resident account before moving abroad, it becomes this account."
+    },
+    fcnr: {
+      t: "FCNR(B) — Foreign Currency Non-Resident deposit",
+      b: "A term deposit that stays in the currency you paid in, for one to five years, with interest compounded half-yearly and paid at maturity in that same currency.",
+      w: "Nothing is converted to rupees, so a falling rupee cannot erode the deposit. Minimum 1,000 units of the currency, or JPY 100,000, opened at designated branches. You can still borrow in rupees against it, and the maturity proceeds are fully repatriable."
+    },
+    rfc: {
+      t: "RFC — Resident Foreign Currency account",
+      b: "For an NRI who has come back to India to stay. Keep your foreign earnings in foreign currency rather than converting everything on the day you land.",
+      w: "You qualify after at least one year abroad, and no Reserve Bank approval is needed. Fund it from your NRE and FCNR balances on return, from overseas asset income or sale proceeds, and from your entire overseas pension. Interest is taxable. If you go abroad again, the funds move back to NRE or FCNR."
+    }
+  };
+  var steps = ['s1','s2','s3'];
+  function show(id){
+    steps.forEach(function(s){ document.getElementById(s).classList.toggle('on', s===id); });
+    document.getElementById('ans').classList.remove('on');
+  }
+  document.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var go = btn.getAttribute('data-go');
+      if (go) { show(go); return; }
+      var key = btn.getAttribute('data-answer');
+      var a = ANS[key];
+      if (!a) return;
+      steps.forEach(function(s){ document.getElementById(s).classList.remove('on'); });
+      document.getElementById('ans-title').textContent = a.t;
+      document.getElementById('ans-body').textContent = a.b;
+      document.getElementById('ans-why').textContent = a.w;
+      document.getElementById('ans').classList.add('on');
+    });
+  });
+  document.querySelectorAll('.q-back').forEach(function(b){
+    b.addEventListener('click', function(){ show(b.getAttribute('data-back')); });
+  });
+  document.getElementById('restart').addEventListener('click', function(){ show('s1'); });
+
+  document.querySelectorAll('.copy').forEach(function(b){
+    b.addEventListener('click', function(){
+      var text = b.getAttribute('data-copy');
+      var done = function(){ var o=b.textContent; b.textContent='Copied'; setTimeout(function(){ b.textContent=o; },1400); };
+      try {
+        navigator.clipboard.writeText(text).then(done, function(){ select(); });
+      } catch(e){ select(); }
+      function select(){
+        var node = b.previousElementSibling;
+        if (!node) return;
+        var r = document.createRange(); r.selectNodeContents(node);
+        var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+      }
+    });
+  });
+})();
+</script>
+
+</body>
+</html>
